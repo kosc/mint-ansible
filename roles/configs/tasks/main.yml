@@ -1,0 +1,23 @@
+---
+- name: Create directory
+  file:
+    path: "/tmp/dotfiles"
+    state: directory
+
+- name: Clone config files from github
+  git:
+    repo: 'https://github.com/kosc/dotfiles.git'
+    dest: "/tmp/dotfiles"
+
+- name: Copy vimrc
+  copy:
+    src: /tmp/dotfiles/.vimrc
+    dest: ~/.vimrc
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0664
+
+- name: Remove temp dir
+  file:
+    state: absent
+    path: "/tmp/dotfiles"
