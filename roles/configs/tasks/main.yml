@@ -17,6 +17,11 @@
     group: "{{ username }}"
     mode: 0664
 
+- name: Append my part to bashrc
+  blockinfile:
+    path: ~/.bashrc
+    block: "{{ lookup('file', '/tmp/dotfiles/.bashrc') }}"
+
 - name: Remove temp dir
   file:
     state: absent
