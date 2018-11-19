@@ -1,0 +1,11 @@
+---
+- name: Install packages
+  sudo: yes
+  ask-become-pass: yes
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - vim
+    - git
+    - dropbox
