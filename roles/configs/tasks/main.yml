@@ -9,6 +9,11 @@
     repo: 'https://github.com/kosc/dotfiles.git'
     dest: "/tmp/dotfiles"
 
+- name: Install Vundle - vim's plugin manager
+  git:
+    repo: 'https://github.com/VundleVim/Vundle.vim.git'
+    dest: "~/.vim/bundle/Vundle.vim"
+
 - name: Copy vimrc
   copy:
     src: /tmp/dotfiles/.vimrc
@@ -16,6 +21,9 @@
     owner: "{{ username }}"
     group: "{{ username }}"
     mode: 0664
+
+- name: Install vim's plugin
+  command: vim +PluginInstall +qall
 
 - name: Append my part to bashrc
   blockinfile:
